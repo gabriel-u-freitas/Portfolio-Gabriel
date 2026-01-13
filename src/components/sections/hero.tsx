@@ -34,8 +34,9 @@ export function Hero() {
                     className="flex flex-wrap gap-4 justify-center md:justify-start pt-2"
                 >
                     <a
-                        href="/resume.pdf"
-                        download
+                        href="/CV_Gabriel_Uzeda_de_Freitas.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-white hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/25 font-semibold"
                         aria-label="Baixar Currículo"
                     >
