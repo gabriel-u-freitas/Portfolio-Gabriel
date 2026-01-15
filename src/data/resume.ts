@@ -7,7 +7,7 @@ export const resumeData = {
         phone: "+55 (48) 99981-6917",
         url: "https://linkedin.com/in/gabrielufreitas/",
         location: "Florianópolis, Brasil",
-        summary: "Profissional com perfil analítico e experiência em fusões e aquisições (M&A), inteligência de mercado no setor financeiro e análise de dados comerciais B2B. Hábil em análise, modelagem e visualização de dados, identificação de tendências e padrões de comportamento. Apaixonado por transformar grandes volumes de informação em insights acionáveis.",
+        summary: "Profissional multidisciplinar apaixonado por transformar o caos dos dados em clareza estratégica.",
     },
     skills: {
         hard: [

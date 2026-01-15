@@ -17,10 +17,10 @@ export function FloatingDock() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
             <motion.div
                 className="flex items-center gap-4 bg-white/80 backdrop-blur-xl border border-zinc-200 px-6 py-3 rounded-full shadow-2xl"
-                initial={{ y: 100, opacity: 0 }}
+                initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
             >
@@ -38,7 +38,7 @@ export function FloatingDock() {
                             <motion.div
                                 animate={{
                                     scale: isHovered ? 1.2 : 1,
-                                    y: isHovered ? -10 : 0,
+                                    y: isHovered ? 5 : 0,
                                 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                 className="p-3 bg-zinc-100/50 rounded-full hover:bg-zinc-100 transition-colors border border-zinc-200/50"
@@ -48,14 +48,14 @@ export function FloatingDock() {
 
                             {/* Tooltip */}
                             <motion.span
-                                initial={{ opacity: 0, y: 10, x: "-50%" }}
+                                initial={{ opacity: 0, y: -10, x: "-50%" }}
                                 animate={{
                                     opacity: isHovered ? 1 : 0,
-                                    y: isHovered ? 0 : 10,
+                                    y: isHovered ? 0 : -10,
                                     x: "-50%"
                                 }}
                                 transition={{ duration: 0.2 }}
-                                className="absolute bottom-full left-1/2 mb-2 px-2 py-1 bg-zinc-900 text-white text-xs rounded-md whitespace-nowrap pointer-events-none shadow-lg"
+                                className="absolute top-full left-1/2 mt-2 px-2 py-1 bg-zinc-900 text-white text-xs rounded-md whitespace-nowrap pointer-events-none shadow-lg"
                             >
                                 {item.label}
                             </motion.span>

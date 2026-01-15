@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: "Gabriel U. de Freitas | Portfolio",
@@ -17,8 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <body className={cn(inter.variable, "font-sans min-h-screen bg-grid-pattern")}>
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 transition-all duration-300">
+      <body className={cn(inter.variable, outfit.variable, "font-sans min-h-screen bg-grid-pattern")}>
+        <main className="w-full transition-all duration-300">
           {children}
         </main>
       </body>

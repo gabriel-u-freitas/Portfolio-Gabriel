@@ -8,6 +8,10 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                sans: ["var(--font-inter)", "sans-serif"],
+                outfit: ["var(--font-outfit)", "sans-serif"],
+            },
             colors: {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
@@ -16,7 +20,7 @@ const config: Config = {
                     foreground: "#FFFFFF",
                 },
                 accent: {
-                    DEFAULT: "#F97316", // Vibrant Orange
+                    DEFAULT: "#3B82F6", // Blue-500
                     foreground: "#FFFFFF",
                 },
                 muted: {

@@ -6,18 +6,28 @@ import { Card } from "@/components/ui/card";
 import { GraduationCap, Award, Calendar } from "lucide-react";
 import { ParticlesBackground } from "@/components/effects/particles-background";
 import { FloatingDock } from "@/components/ui/floating-dock";
+import { ScrollConfetti } from "@/components/ui/scroll-confetti";
 
 export default function Home() {
     return (
         <div className="relative isolate min-h-screen">
-            <div className="absolute inset-0 z-0 pointer-events-none">
+            {/* Hero Background Gradient */}
+            <div className="absolute top-0 inset-x-0 h-[90vh] -z-20 bg-gradient-to-b from-blue-50 via-blue-50/40 to-white pointer-events-none" />
+
+            <ScrollConfetti />
+            <div className="absolute inset-x-0 h-[95vh] top-[52px] md:top-[83px] z-0 pointer-events-none">
                 <ParticlesBackground />
             </div>
 
             <FloatingDock />
 
-            <div className="relative z-10 p-4 md:p-8 max-w-7xl mx-auto">
-                <Hero />
+            {/* Top Margin Spacer (allows background to show but keeps cursor default) */}
+            <div className="h-[52px] md:h-[83px] w-full" />
+
+            {/* Full width Hero for cursor events */}
+            <Hero />
+
+            <div className="relative z-10 px-4 pb-4 pt-0 md:px-8 md:pb-8 md:pt-0 max-w-7xl mx-auto">
 
                 <div id="experience" className="scroll-mt-32">
                     <ExperienceSection />
