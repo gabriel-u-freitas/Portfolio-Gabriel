@@ -1,72 +1,67 @@
 "use client";
 
+import Image from "next/image";
 import { resumeData } from "@/data/resume";
 import { Card } from "@/components/ui/card";
-import { SkillsRadar } from "@/components/effects/radar-chart";
-import { Database, Cpu, Globe } from "lucide-react"; // Import architecture icons
+import { TechMarquee } from "@/components/ui/tech-marquee";
+import { Database } from "lucide-react";
+
+// Map flags to languages
+const flagMap: Record<string, string> = {
+    "Português": "/brasil.webp",
+    "Inglês": "/Flag_of_the_United_States.png",
+    "Espanhol": "/espanhol.svg",
+    "Italiano": "/italia.svg",
+};
 
 export function SkillsSection() {
     return (
-        <section className="gap-6 flex flex-col mb-16 relative">
-            {/* Huge Icon Background - Architecture */}
-            <div className="absolute -top-20 -right-20 -z-10 opacity-[0.03] text-primary rotate-12 pointer-events-none">
-                <Database size={400} />
+        <section className="flex flex-col gap-3 relative items-center w-full">
+            {/* Background decoration removed */}
+
+            {/* Section Title */}
+            <h2 className="text-3xl md:text-4xl font-bold font-outfit text-primary mb-4 flex items-center gap-3">
+                <span className="bg-primary/5 p-2 rounded-lg">👨🏻‍💻</span>
+                Skills
+            </h2>
+
+            {/* Skills (Tech Marquee) */}
+            <div className="w-full max-w-4xl">
+                <Card className="overflow-hidden backdrop-blur-sm bg-white/50 border-zinc-100 shadow-sm">
+                    <TechMarquee />
+                </Card>
             </div>
 
-            <Card className="flex flex-col gap-4 overflow-hidden backdrop-blur-sm bg-white/90">
-                <h3 className="text-xl font-extrabold tracking-tight text-primary z-10">Hard Skills Visualization</h3>
-                <SkillsRadar />
+            {/* Languages Grid (Centered, No Header) */}
+            <div className="grid grid-cols-2 gap-3 w-full max-w-2xl">
+                {resumeData.skills.languages.map((lang, index) => (
+                    <div
+                        key={index}
+                        className="relative overflow-hidden flex items-center justify-between p-3 bg-white/50 backdrop-blur-sm border border-zinc-200/50 rounded-xl hover:shadow-md hover:border-blue-500/20 transition-all duration-300 group cursor-default"
+                    >
+                        {/* Hover Gradient Background */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/0 via-blue-50/30 to-blue-50/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none" />
 
-                <div className="flex flex-wrap gap-2 mt-4">
-                    {resumeData.skills.hard.map((skill, index) => (
-                        <span
-                            key={index}
-                            className="px-2 py-1 bg-zinc-50 text-zinc-600 rounded text-xs font-medium border border-zinc-100"
-                        >
-                            {skill}
-                        </span>
-                    ))}
-                </div>
-            </Card>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="flex flex-col gap-4 backdrop-blur-sm bg-white/90 relative overflow-hidden">
-
-                    {/* Subtle Huge Icon for Soft Skills */}
-                    <div className="absolute -bottom-10 -right-10 opacity-[0.04] text-primary pointer-events-none">
-                        <Cpu size={200} />
-                    </div>
-
-                    <h3 className="text-xl font-extrabold tracking-tight text-primary">Soft Skills</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {resumeData.skills.soft.map((skill, index) => (
-                            <span
-                                key={index}
-                                className="px-3 py-1.5 bg-zinc-50 text-zinc-700 border border-zinc-100 rounded-lg text-sm font-semibold hover:border-accent/40 transition-colors"
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </Card>
-
-                <Card className="flex flex-col gap-4 backdrop-blur-sm bg-white/90 relative overflow-hidden">
-
-                    {/* Subtle Huge Icon for Languages */}
-                    <div className="absolute -bottom-10 -right-10 opacity-[0.04] text-primary pointer-events-none">
-                        <Globe size={200} />
-                    </div>
-
-                    <h3 className="text-xl font-extrabold tracking-tight text-primary">Idiomas</h3>
-                    <div className="space-y-3">
-                        {resumeData.skills.languages.map((lang, index) => (
-                            <div key={index} className="flex justify-between items-center text-sm p-2 hover:bg-zinc-50 rounded-lg transition-colors">
-                                <span className="font-bold text-zinc-800">{lang.language}</span>
-                                <span className="text-zinc-600 font-light tracking-wide">{lang.level}</span>
+                        <div className="flex items-center gap-3 relative z-10">
+                            <div className="relative w-8 h-8 flex items-center justify-center filter drop-shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                                <Image
+                                    src={flagMap[lang.language] || "/placeholder.png"}
+                                    alt={lang.language}
+                                    width={32}
+                                    height={32}
+                                    className="object-contain w-full h-full"
+                                />
                             </div>
-                        ))}
+                            <span className="font-semibold text-sm text-zinc-700 tracking-tight group-hover:text-blue-700 transition-colors">
+                                {lang.language}
+                            </span>
+                        </div>
+
+                        <span className="relative z-10 px-2 py-0.5 rounded-md bg-white border border-zinc-100 text-zinc-500 text-[10px] font-bold uppercase tracking-wider shadow-sm group-hover:border-blue-100 group-hover:text-blue-600 transition-colors">
+                            {lang.level}
+                        </span>
                     </div>
-                </Card>
+                ))}
             </div>
         </section>
     );

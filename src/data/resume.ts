@@ -111,5 +111,15 @@ export const resumeData = {
         { name: "Data Visualization & DAX in Power BI", issuer: "DataCamp", date: "Set 2025" },
         { name: "G4 Aceleração de Vendas", issuer: "G4 Educação", date: "Jun 2024" },
         { name: "Comunicação e Oratória", issuer: "Escola Conquer", date: "Mai 2023" }
-    ]
+    ],
+
+    about: {
+        description: "Minha jornada começou na administração, mas foi nos dados que encontrei minha verdadeira vocação. Acredito que números sem contexto são apenas ruído, e meu objetivo é traduzir essa complexidade em narrativas claras que impulsionam decisões estratégicas. Quando não estou construindo dashboards ou analisando teses de M&A, você provavelmente vai me encontrar buscando a próxima onda perfeita ou explorando novos cafés pela cidade.",
+        hobbies: ["Surf", "Cafés Especiais", "Fotografia", "Viagens", "Corrida"],
+        photos: [
+            "/profile.png", // Using existing profile pic as placeholder 1
+            "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=2070&auto=format&fit=crop", // Placeholder 2 (Lifestyle/Work)
+            "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2574&auto=format&fit=crop"  // Placeholder 3 (Hobby/Coffee)
+        ]
+    }
 };

@@ -2,7 +2,7 @@
 
 import { resumeData } from "@/data/resume";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Mail, Twitter, Phone, ArrowRight, Download, Target } from "lucide-react";
+import { Github, Linkedin, MessageCircle, Twitter, Phone, ArrowRight, Download, Target } from "lucide-react";
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import { useState } from "react";
@@ -12,6 +12,7 @@ import { HeroCursor } from "@/components/ui/custom-cursor";
 export function Hero() {
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isHoveringLink, setIsHoveringLink] = useState(false); // New state for cursor expansion
     const [isClarityHovered, setIsClarityHovered] = useState(false);
 
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -26,10 +27,11 @@ export function Hero() {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
         >
+            {/* Custom Cursor scoped to Hero */}
+            {isHovering && <HeroCursor x={cursorPosition.x} y={cursorPosition.y} isHoveringLink={isHoveringLink} />}
+
             {/* Centered Content Container */}
             <div className="max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col items-center gap-4">
-                {isHovering && <HeroCursor x={cursorPosition.x} y={cursorPosition.y} />}
-
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -175,6 +177,8 @@ export function Hero() {
                             href="/projects"
                             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-blue-600/25 font-semibold"
                             aria-label="Ver Projetos"
+                            onMouseEnter={() => setIsHoveringLink(true)}
+                            onMouseLeave={() => setIsHoveringLink(false)}
                         >
                             <span className="text-base">Ver Projetos</span>
                             <ArrowRight size={20} />
@@ -186,6 +190,8 @@ export function Hero() {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-transparent border border-zinc-300 text-zinc-600 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all hover:scale-105 active:scale-95 font-semibold"
                             aria-label="Baixar Currículo"
+                            onMouseEnter={() => setIsHoveringLink(true)}
+                            onMouseLeave={() => setIsHoveringLink(false)}
                         >
                             <Download size={20} />
                             <span className="text-base">Baixar Currículo</span>
@@ -197,6 +203,8 @@ export function Hero() {
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center p-3.5 rounded-full bg-white border border-zinc-200 text-zinc-500 hover:bg-zinc-50 hover:text-[#0077b5] transition-all hover:scale-105 active:scale-95"
                             aria-label="LinkedIn"
+                            onMouseEnter={() => setIsHoveringLink(true)}
+                            onMouseLeave={() => setIsHoveringLink(false)}
                         >
                             <Linkedin size={20} />
                         </a>
@@ -204,8 +212,10 @@ export function Hero() {
                             href="https://wa.me/5548999816917"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center p-3.5 rounded-full bg-white border border-zinc-200 text-zinc-500 hover:bg-zinc-50 hover:text-[#25D366] transition-all hover:scale-105 active:scale-95"
+                            className="inline-flex items-center justify-center p-3.5 rounded-full bg-white border border-zinc-200 text-zinc-500 hover:bg-zinc-50 hover:text-green-600 transition-all hover:scale-105 active:scale-95"
                             aria-label="WhatsApp"
+                            onMouseEnter={() => setIsHoveringLink(true)}
+                            onMouseLeave={() => setIsHoveringLink(false)}
                         >
                             <Phone size={20} />
                         </a>

@@ -1,9 +1,11 @@
-import { ExperienceSection } from "@/components/sections/experience";
+
+
+import { CodeIntro } from "@/components/sections/code-intro";
 import { Hero } from "@/components/sections/hero";
 import { SkillsSection } from "@/components/sections/skills";
 import { resumeData } from "@/data/resume";
 import { Card } from "@/components/ui/card";
-import { GraduationCap, Award, Calendar } from "lucide-react";
+import { Award } from "lucide-react";
 import { ParticlesBackground } from "@/components/effects/particles-background";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { ScrollConfetti } from "@/components/ui/scroll-confetti";
@@ -29,54 +31,19 @@ export default function Home() {
 
             <div className="relative z-10 px-4 pb-4 pt-0 md:px-8 md:pb-8 md:pt-0 max-w-7xl mx-auto">
 
-                <div id="experience" className="scroll-mt-32">
-                    <ExperienceSection />
-                </div>
+
 
                 <div className="flex flex-col gap-24 max-w-4xl mx-auto" id="about">
 
-                    <section id="education">
-                        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8 flex items-center gap-3">
-                            <span className="bg-primary/5 p-2 rounded-lg">🎓</span>
-                            Educação
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {resumeData.education.map((edu, index) => (
-                                <Card
-                                    key={index}
-                                    className="flex flex-col gap-4 h-full"
-                                    whileHover={{ scale: 1.02, transition: { duration: 0.2, type: "spring" } }}
-                                >
-                                    <div className="bg-zinc-100 p-3 rounded-xl text-zinc-600 w-fit">
-                                        <GraduationCap size={28} />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-lg text-gray-900 leading-snug">{edu.degree}</h3>
-                                        <p className="text-zinc-600 font-medium">{edu.institution}</p>
-                                        <div className="flex flex-col gap-1 text-sm mt-3 text-zinc-500">
-                                            <span className="flex items-center gap-2">
-                                                <Calendar size={14} /> {edu.period}
-                                            </span>
-                                            {edu.note && (
-                                                <span className="font-semibold text-primary/80 bg-primary/5 px-2 py-0.5 rounded w-fit">{edu.note}</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </Card>
-                            ))}
-                        </div>
-                    </section>
+                    <CodeIntro />
+
 
                     <div id="skills" className="scroll-mt-32">
-                        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8 flex items-center gap-3">
-                            <span className="bg-primary/5 p-2 rounded-lg">🚀</span>
-                            Skills & Idiomas
-                        </h2>
                         <SkillsSection />
                     </div>
 
                     <section id="certifications" className="scroll-mt-32">
-                        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8 flex items-center gap-3">
+                        <h2 className="text-3xl md:text-4xl font-bold font-outfit text-primary mb-8 flex items-center justify-center gap-3">
                             <span className="bg-primary/5 p-2 rounded-lg">🏆</span>
                             Certificados
                         </h2>
@@ -84,17 +51,36 @@ export default function Home() {
                             {resumeData.certifications.map((cert, index) => (
                                 <Card
                                     key={index}
-                                    className="flex gap-4 items-start p-5 hover:bg-zinc-50/80 transition-colors"
+                                    noScale
+                                    className="flex flex-col gap-4 p-5 transition-all duration-300 relative overflow-hidden group hover:border-blue-200/50 hover:shadow-lg hover:shadow-blue-500/5"
                                 >
-                                    <div className="bg-white border border-zinc-100 p-2 rounded-lg shrink-0 shadow-sm text-sm font-bold text-primary w-12 h-12 flex items-center justify-center">
-                                        {cert.issuer.substring(0, 2).toUpperCase()}
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-sm text-gray-900 leading-snug mb-1">{cert.name}</h3>
-                                        <p className="text-xs text-zinc-500 mb-1">{cert.issuer}</p>
-                                        <span className="text-[10px] text-zinc-600 flex items-center gap-1 bg-zinc-100 w-fit px-1.5 py-0.5 rounded">
-                                            {cert.date}
-                                        </span>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-white via-60% to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                                    <div className="relative z-10 flex flex-col h-full justify-between gap-4">
+                                        <div className="flex items-start justify-between w-full">
+                                            <div className="bg-blue-50/50 p-2 rounded-full ring-1 ring-blue-100/50">
+                                                <Award className="w-4 h-4 text-blue-600" />
+                                            </div>
+                                            <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                                                {cert.date.split(" ").pop()}
+                                            </span>
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <h3 className="font-bold text-sm text-zinc-800 leading-snug group-hover:text-blue-700 transition-colors">
+                                                {cert.name}
+                                            </h3>
+                                            <p className="text-xs text-zinc-500 font-medium">
+                                                {cert.issuer}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex w-full justify-end pt-2">
+                                            <span className="text-[10px] font-semibold text-zinc-400 group-hover:text-blue-600 flex items-center gap-1 transition-colors">
+                                                View certificate
+                                                <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </Card>
                             ))}
