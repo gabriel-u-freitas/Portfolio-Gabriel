@@ -26,10 +26,7 @@ export function Hero() {
         setCursorPosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleTouchMove = (e: React.TouchEvent) => {
-        const touch = e.touches[0];
-        setCursorPosition({ x: touch.clientX, y: touch.clientY });
-    };
+
 
     return (
         <section
@@ -38,12 +35,6 @@ export function Hero() {
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
-            onTouchStart={(e) => {
-                setIsHovering(true);
-                handleTouchMove(e);
-            }}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={() => setIsHovering(false)}
         >
             {/* Custom Cursor scoped to Hero */}
             {isHovering && <HeroCursor x={cursorPosition.x} y={cursorPosition.y} isHoveringLink={isHoveringLink} />}
