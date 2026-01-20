@@ -8,6 +8,7 @@ import Typewriter from "typewriter-effect";
 import { useState } from "react";
 import Link from "next/link";
 import { HeroCursor } from "@/components/ui/custom-cursor";
+import { ResumeDownload } from "@/components/ui/resume-download";
 
 export function Hero() {
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -184,18 +185,7 @@ export function Hero() {
                             <ArrowRight size={20} />
                         </Link>
 
-                        <a
-                            href="/CV_Gabriel_Uzeda_de_Freitas.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-transparent border border-zinc-300 text-zinc-600 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all hover:scale-105 active:scale-95 font-semibold"
-                            aria-label="Baixar Currículo"
-                            onMouseEnter={() => setIsHoveringLink(true)}
-                            onMouseLeave={() => setIsHoveringLink(false)}
-                        >
-                            <Download size={20} />
-                            <span className="text-base">Baixar Currículo</span>
-                        </a>
+                        <ResumeDownload />
 
                         <a
                             href={resumeData.basics.url}

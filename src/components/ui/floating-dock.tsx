@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Home, Briefcase, GraduationCap, Cpu, Award } from "lucide-react";
+import { Home, User, Cpu, Award, FolderKanban } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 const dockItems = [
-    { icon: Home, label: "Início", href: "#hero" },
-    { icon: Briefcase, label: "Experiência", href: "#experience" },
-    { icon: GraduationCap, label: "Educação", href: "#education" },
-    { icon: Cpu, label: "Skills", href: "#skills" },
+    { icon: Home, label: "Início", href: "/" },
+    { icon: User, label: "Sobre", href: "#about" },
+    { icon: Cpu, label: "Habilidades", href: "#skills" },
     { icon: Award, label: "Certificados", href: "#certifications" },
+    { icon: FolderKanban, label: "Projetos", href: "/projects" },
 ];
 
 export function FloatingDock() {
