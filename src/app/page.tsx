@@ -81,7 +81,7 @@ export default function Home() {
                             <span className="bg-primary/5 p-2 rounded-lg">🏆</span>
                             Cursos & Certificados
                         </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {visibleCerts.map((cert, index) => (
                                 <Card
                                     key={index}

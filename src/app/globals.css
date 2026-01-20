@@ -15,6 +15,17 @@
   @apply bg-zinc-300 rounded-full hover:bg-zinc-400 transition-colors;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .bg-grid-pattern {
   background-image: radial-gradient(rgba(15, 23, 42, 0.035) 1.5px, transparent 1.5px);
   background-size: 24px 24px;

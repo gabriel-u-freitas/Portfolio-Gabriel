@@ -60,10 +60,10 @@ export function Hero() {
                     className="space-y-6 max-w-4xl flex flex-col items-center"
                 >
                     <div className="scale-[0.97]">
-                        <h1 className="font-outfit text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-primary leading-tight mb-2">
-                            Oi, me chamo Gabriel e sou
+                        <h1 className="font-outfit text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-primary leading-tight mb-2">
+                            Oi, me chamo <br className="block md:hidden" /> Gabriel e sou
                         </h1>
-                        <div className="font-outfit text-5xl sm:text-6xl md:text-7xl text-blue-600 font-extrabold tracking-tight h-[1.5em] flex items-center justify-center">
+                        <div className="font-outfit text-4xl sm:text-5xl md:text-7xl text-blue-600 font-extrabold tracking-tight h-[1.5em] flex items-center justify-center">
                             <Typewriter
                                 options={{
                                     strings: [

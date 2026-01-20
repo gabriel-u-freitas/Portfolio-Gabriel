@@ -47,7 +47,7 @@ export function CodeIntro() {
     }, []);
 
     return (
-        <section ref={containerRef} className="w-full max-w-3xl mx-auto px-2 md:px-4 mb-32 relative z-20">
+        <section ref={containerRef} className="w-full max-w-3xl mx-auto px-2 md:px-4 mb-32 md:mb-56 relative z-20">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ export function CodeIntro() {
                     </div>
 
                     {/* Window Content */}
-                    <div className="px-1 py-2 md:p-6 overflow-x-auto">
+                    <div className="px-1 py-2 md:p-6 overflow-x-auto no-scrollbar">
                         <pre className="font-mono text-[9px] sm:text-xs md:text-sm lg:text-base leading-relaxed text-zinc-400 w-max">
                             <code className="block">
                                 {"\n"}
@@ -91,7 +91,7 @@ export function CodeIntro() {
                 <div
                     className="absolute -bottom-16 left-0 w-full h-80 z-20 flex items-end pointer-events-none"
                 >
-                    <div className="relative w-full h-full pointer-events-auto">
+                    <div className="relative w-full h-full">
                         <div
                             className="absolute bottom-0 w-full flex items-center justify-center p-4"
                             style={{ width: "100%" }}
@@ -112,12 +112,12 @@ export function CodeIntro() {
 
                                     const startX = isMobile ? (150 + (index * 5)) : (350 + (index * 5));
                                     const startY = isMobile ? (60 - (index * 2)) : (60 - (index * 4));
-                                    const targetY = isMobile ? 120 : 180;
+                                    const targetY = isMobile ? 135 : 180;
 
                                     return (
                                         <motion.div
                                             key={index}
-                                            className="absolute w-24 h-36 md:w-44 md:h-60 bg-zinc-800 rounded-xl shadow-2xl overflow-hidden origin-center"
+                                            className="absolute w-24 h-36 md:w-44 md:h-60 bg-zinc-800 rounded-xl shadow-2xl overflow-hidden origin-center pointer-events-auto"
                                             whileHover={{ scale: 1.2, zIndex: 100 }}
                                             whileTap={{ scale: 1.2, zIndex: 100 }}
                                             variants={{
