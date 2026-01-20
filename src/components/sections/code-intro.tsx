@@ -3,7 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const photos = [
     "/1.jpeg",
@@ -17,6 +17,7 @@ const photos = [
 export function CodeIntro() {
     const containerRef = useRef<HTMLElement>(null);
     const [isActive, setIsActive] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -38,8 +39,15 @@ export function CodeIntro() {
         }
     });
 
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     return (
-        <section ref={containerRef} className="w-full max-w-3xl mx-auto px-4 mb-56 relative z-20">
+        <section ref={containerRef} className="w-full max-w-3xl mx-auto px-2 md:px-4 mb-32 relative z-20">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -62,8 +70,8 @@ export function CodeIntro() {
                     </div>
 
                     {/* Window Content */}
-                    <div className="p-6">
-                        <pre className="font-mono text-sm md:text-base leading-relaxed text-zinc-400">
+                    <div className="px-1 py-2 md:p-6 overflow-x-auto">
+                        <pre className="font-mono text-[9px] sm:text-xs md:text-sm lg:text-base leading-relaxed text-zinc-400 w-max">
                             <code className="block">
                                 {"\n"}
                                 <span className="text-violet-400">SELECT</span> *{"\n"}
@@ -71,9 +79,9 @@ export function CodeIntro() {
                                 <span className="text-violet-400">LEFT JOIN</span> <span className="text-zinc-100">attributes</span> <span className="text-violet-400">AS</span> <span className="text-zinc-100">a</span>{"\n"}
                                 <span className="text-violet-400">ON</span> <span className="text-zinc-100">p.id</span> = <span className="text-zinc-100">a.id</span>{"\n"}
                                 <span className="text-violet-400">WHERE</span> <span className="text-zinc-100">name</span> = <span className="text-blue-400">'Gabriel Freitas'</span>{"\n"}
-                                {"  "}<span className="text-violet-400">AND</span> <span className="text-zinc-100">passion</span> <span className="text-violet-400">IN</span> (<span className="text-blue-400">'data'</span>, <span className="text-blue-400">'technology'</span>, <span className="text-blue-400">'problem solving'</span>, <span className="text-blue-400">'travelling'</span>){"\n"}
-                                {"  "}<span className="text-violet-400">AND</span> <span className="text-zinc-100">education</span> = <span className="text-blue-400">'Administração Empresarial @ Esag UDESC'</span>{"\n"}
-                                {"  "}<span className="text-violet-400">AND</span> <span className="text-zinc-100">location</span> = <span className="text-blue-400">'Florianópolis, Brasil'</span><span className="text-zinc-500">;</span>
+                                <span className="text-violet-400">AND</span> <span className="text-zinc-100">passion</span> <span className="text-violet-400">IN</span> (<span className="text-blue-400">'data'</span>, <span className="text-blue-400">'technology'</span>, <span className="text-blue-400">'problem solving'</span>, <span className="text-blue-400">'travelling'</span>){"\n"}
+                                <span className="text-violet-400">AND</span> <span className="text-zinc-100">education</span> = <span className="text-blue-400">'Administração Empresarial @ Esag UDESC'</span>{"\n"}
+                                <span className="text-violet-400">AND</span> <span className="text-zinc-100">location</span> = <span className="text-blue-400">'Florianópolis, Brasil'</span><span className="text-zinc-500">;</span>
                             </code>
                         </pre>
                     </div>
@@ -93,29 +101,31 @@ export function CodeIntro() {
                                 animate={isActive ? "visible" : "hidden"}
                                 variants={{
                                     visible: {
-                                        transition: { staggerChildren: 0.1 }
+                                        transition: { staggerChildren: isMobile ? 0.08 : 0.1 }
                                     },
                                     hidden: {}
                                 }}
                             >
                                 {photos.map((photo, index) => {
-                                    const spacing = 150;
+                                    const spacing = isMobile ? 58 : 150;
                                     const targetX = (index - 2.5) * spacing;
-                                    const startX = 350 + (index * 5);
-                                    const startY = 60 - (index * 4);
-                                    const targetY = 180;
+
+                                    const startX = isMobile ? (150 + (index * 5)) : (350 + (index * 5));
+                                    const startY = isMobile ? (60 - (index * 2)) : (60 - (index * 4));
+                                    const targetY = isMobile ? 120 : 180;
 
                                     return (
                                         <motion.div
                                             key={index}
-                                            className="absolute w-44 h-60 bg-zinc-800 rounded-xl shadow-2xl overflow-hidden origin-center"
+                                            className="absolute w-24 h-36 md:w-44 md:h-60 bg-zinc-800 rounded-xl shadow-2xl overflow-hidden origin-center"
                                             whileHover={{ scale: 1.2, zIndex: 100 }}
+                                            whileTap={{ scale: 1.2, zIndex: 100 }}
                                             variants={{
                                                 hidden: {
                                                     x: startX,
                                                     y: startY,
                                                     rotate: (index % 2 === 0 ? 3 : -3) * (index + 1),
-                                                    scale: 1 - (index * 0.05),
+                                                    scale: (1 - (index * 0.05)) * (isMobile ? 0.6 : 1),
                                                     zIndex: index,
                                                     transition: {
                                                         duration: 0.5
@@ -140,7 +150,7 @@ export function CodeIntro() {
                                                 alt={`Gallery ${index + 1}`}
                                                 fill
                                                 className="object-cover"
-                                                sizes="(max-width: 768px) 100vw, 300px"
+                                                sizes="(max-width: 768px) 150px, 300px"
                                             />
                                         </motion.div>
                                     );
@@ -152,7 +162,7 @@ export function CodeIntro() {
                                         hidden: { opacity: 1, x: 370, y: 40 },
                                         visible: { opacity: 0, x: 370, y: 40 }
                                     }}
-                                    className="absolute bottom-60 bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg pointer-events-none z-50 whitespace-nowrap"
+                                    className="hidden md:block absolute bottom-60 bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg pointer-events-none z-50 whitespace-nowrap"
                                 >
                                     Ver fotos 📸
                                 </motion.div>
