@@ -15,9 +15,20 @@ export function Hero() {
     const [isHovering, setIsHovering] = useState(false);
     const [isHoveringLink, setIsHoveringLink] = useState(false); // New state for cursor expansion
     const [isClarityHovered, setIsClarityHovered] = useState(false);
+    const [isShaking, setIsShaking] = useState(false);
+
+    const triggerShake = () => {
+        setIsShaking(true);
+        setTimeout(() => setIsShaking(false), 1500);
+    };
 
     const handleMouseMove = (e: React.MouseEvent) => {
         setCursorPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        const touch = e.touches[0];
+        setCursorPosition({ x: touch.clientX, y: touch.clientY });
     };
 
     return (
@@ -27,6 +38,12 @@ export function Hero() {
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
+            onTouchStart={(e) => {
+                setIsHovering(true);
+                handleTouchMove(e);
+            }}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={() => setIsHovering(false)}
         >
             {/* Custom Cursor scoped to Hero */}
             {isHovering && <HeroCursor x={cursorPosition.x} y={cursorPosition.y} isHoveringLink={isHoveringLink} />}
@@ -85,6 +102,12 @@ export function Hero() {
                         Profissional multidisciplinar apaixonado por transformar o{" "}
                         <motion.span
                             className="inline-block cursor-default"
+                            onClick={triggerShake}
+                            animate={isShaking ? {
+                                x: [0, -2, 2, -2, 2, 0],
+                                y: [0, 1, -1, 0],
+                                transition: { duration: 0.4, repeat: Infinity }
+                            } : {}}
                             whileHover={{
                                 x: [0, -2, 2, -2, 2, 0],
                                 y: [0, 1, -1, 0],
