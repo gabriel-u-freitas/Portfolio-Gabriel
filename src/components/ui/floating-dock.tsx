@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Home, User, Cpu, Award, FolderKanban } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const dockItems = [
     { icon: Home, label: "Início", href: "/" },
@@ -15,14 +15,51 @@ const dockItems = [
 
 export function FloatingDock() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [isVisible, setIsVisible] = useState(true); // Always start true to avoid hydration mismatch, control in effect
+
+    const { scrollY } = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+            setIsVisible(latest > 50);
+        } else {
+            setIsVisible(true);
+        }
+    });
+
+    useEffect(() => {
+        const check = () => {
+            if (window.innerWidth < 768) {
+                // Mobile: Check initial scroll position
+                setIsVisible(window.scrollY > 50);
+            } else {
+                // Desktop: Always visible
+                setIsVisible(true);
+            }
+        };
+
+        // Run check immediately to set correct initial state
+        check();
+
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
 
     return (
-        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
             <motion.div
-                className="flex items-center gap-4 bg-white/80 backdrop-blur-xl border border-zinc-200 px-6 py-3 rounded-full shadow-2xl"
+                className="flex items-center gap-4 bg-white/80 backdrop-blur-xl border border-zinc-200 px-6 py-3 rounded-full shadow-2xl pointer-events-auto"
                 initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
+                animate={{
+                    y: isVisible ? 0 : -100,
+                    opacity: isVisible ? 1 : 0
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20
+                }}
             >
                 {dockItems.map((item, index) => {
                     const isHovered = hoveredIndex === index;
