@@ -103,14 +103,84 @@ export const resumeData = {
         }
     ],
     certifications: [
-        { name: "Exploratory Data Analysis in SQL", issuer: "DataCamp", date: "Nov 2025" },
-        { name: "Case Study: Analyzing Job Market Data in Power BI", issuer: "DataCamp", date: "Nov 2025" },
-        { name: "Case Study: Analyzing Customer Churn in Power BI", issuer: "DataCamp", date: "Out 2025" },
-        { name: "Intermediate Python", issuer: "DataCamp", date: "Out 2025" },
-        { name: "Data Manipulation in SQL", issuer: "DataCamp", date: "Set 2025" },
-        { name: "Data Visualization & DAX in Power BI", issuer: "DataCamp", date: "Set 2025" },
-        { name: "G4 Aceleração de Vendas", issuer: "G4 Educação", date: "Jun 2024" },
-        { name: "Comunicação e Oratória", issuer: "Escola Conquer", date: "Mai 2023" }
+        {
+            name: "Exploratory Data Analysis in SQL",
+            issuer: "DataCamp",
+            date: "Nov 2025",
+            link: "/Certificados LinkedIn/12 Exploratory Data Analysis in SQL - 4h.pdf"
+        },
+        {
+            name: "Case Study: Analyzing Job Market Data in Power BI",
+            issuer: "DataCamp",
+            date: "Nov 2025",
+            link: "/Certificados LinkedIn/11 Case Study - Analyzing Job Market Data in Power BI - 4h.pdf"
+        },
+        {
+            name: "Case Study: Analyzing Customer Churn in Power BI",
+            issuer: "DataCamp",
+            date: "Out 2025",
+            link: "/Certificados LinkedIn/10 Case Study - Analyzing Customer Churn in Power BI - 3h.pdf"
+        },
+        {
+            name: "Intermediate Python",
+            issuer: "DataCamp",
+            date: "Out 2025",
+            link: "/Certificados LinkedIn/9 Intermediate Python - 4h.pdf"
+        },
+        {
+            name: "Data Manipulation in SQL",
+            issuer: "DataCamp",
+            date: "Set 2025",
+            link: "/Certificados LinkedIn/7 Data Manipulation in SQL - 4h.pdf"
+        },
+        {
+            name: "Data Visualization & DAX in Power BI",
+            issuer: "DataCamp",
+            date: "Set 2025",
+            link: "/Certificados LinkedIn/6 Data Visualization in Power BI - 3h.pdf"
+        },
+        {
+            name: "Joining Data in SQL",
+            issuer: "DataCamp",
+            date: "Set 2025",
+            link: "/Certificados LinkedIn/3 Joining Data in SQL - 4h.pdf"
+        },
+        {
+            name: "Intermediate SQL",
+            issuer: "DataCamp",
+            date: "Ago 2025",
+            link: "/Certificados LinkedIn/2 Intermediate SQL - 4h.pdf"
+        },
+        {
+            name: "G4 Aceleração de Vendas",
+            issuer: "G4 Educação",
+            date: "Jun 2024",
+            link: "/Certificados LinkedIn/outros/Certificado G4 Aceleração de Vendas - Gabriel.pdf"
+        },
+        {
+            name: "Comunicação e Oratória",
+            issuer: "Escola Conquer",
+            date: "Mai 2023",
+            link: "#"
+        },
+        {
+            name: "Imersão em Investment Banking",
+            issuer: "Stark",
+            date: "Jan 2023",
+            link: "/Certificados LinkedIn/outros/10 Certificado Curso Stark - Imersão em Investment Banking.pdf"
+        },
+        {
+            name: "Fundamentos de Inbound Marketing",
+            issuer: "RD University",
+            date: "Out 2022",
+            link: "/Certificados LinkedIn/outros/9 Certificado Fundamentos de Inbound Marketing para Analistas RD University - 2022.out.pdf"
+        },
+        {
+            name: "Introdução ao Inbound Marketing",
+            issuer: "RD University",
+            date: "Ago 2022",
+            link: "/Certificados LinkedIn/outros/7 Certificado Introdução ao Inbound Marketing RD University - 2022.ago.pdf"
+        }
     ],
 
     about: {

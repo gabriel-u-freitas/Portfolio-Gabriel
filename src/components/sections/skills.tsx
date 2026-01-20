@@ -22,7 +22,7 @@ export function SkillsSection() {
             {/* Section Title */}
             <h2 className="text-3xl md:text-4xl font-bold font-outfit text-primary mb-4 flex items-center gap-3">
                 <span className="bg-primary/5 p-2 rounded-lg">👨🏻‍💻</span>
-                Skills
+                Habilidades
             </h2>
 
             {/* Skills (Tech Marquee) */}
