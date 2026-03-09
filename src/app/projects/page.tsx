@@ -43,6 +43,17 @@ export default function ProjectsPage() {
         filter.includes("All") || filter.includes(project.category)
     );
 
+    const getCategoryRank = (category: string) => {
+        if (category === "SQL") return 1;
+        if (category === "Python") return 2;
+        if (category === "Power BI") return 3;
+        return 4;
+    };
+
+    const sortedFilteredProjects = [...filteredProjects].sort((a, b) => {
+        return getCategoryRank(a.category) - getCategoryRank(b.category);
+    });
+
     const getCategoryIcon = (category: string, isSelected: boolean) => {
         const colorClass = isSelected ? "text-white" : "text-blue-600";
 
@@ -141,56 +152,118 @@ export default function ProjectsPage() {
                     </div>
                 </div>
 
-                <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <AnimatePresence mode="popLayout">
-                        {filteredProjects.map((project, index) => (
-                            <motion.div
-                                key={project.title}
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <Card className="h-full flex flex-col p-6 hover:shadow-xl transition-all duration-300 border-zinc-200/60 bg-white">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className={cn(
-                                            "px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider",
-                                            project.category === "Power BI" && "bg-yellow-100 text-yellow-700",
-                                            project.category === "SQL" && "bg-blue-100 text-blue-700",
-                                            project.category === "Python" && "bg-green-100 text-green-700"
-                                        )}>
-                                            {project.category}
-                                        </div>
-                                    </div>
+                {filter.includes("All") ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {["SQL", "Python", "Power BI"].map((colCategory) => {
+                            const columnProjects = projectsData.filter(p => p.category === colCategory);
+                            if (columnProjects.length === 0) return <div key={colCategory} className="flex flex-col gap-6" />;
 
-                                    <h3 className="font-outfit text-xl font-bold text-gray-900 mb-2">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-zinc-500 mb-6 flex-grow leading-relaxed">
-                                        {project.description}
-                                    </p>
+                            return (
+                                <div key={colCategory} className="flex flex-col gap-6">
+                                    <AnimatePresence mode="popLayout">
+                                        {columnProjects.map((project) => (
+                                            <motion.div
+                                                key={project.title}
+                                                layout
+                                                initial={{ opacity: 0, scale: 0.9 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.9 }}
+                                                transition={{ duration: 0.3 }}
+                                            >
+                                                <Card className="h-full min-h-[365px] flex flex-col p-6 hover:shadow-xl transition-all duration-300 border-zinc-200/60 bg-white">
+                                                    <div className="flex justify-between items-start mb-4">
+                                                        <div className={cn(
+                                                            "px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider",
+                                                            project.category === "Power BI" && "bg-yellow-100 text-yellow-700",
+                                                            project.category === "SQL" && "bg-blue-100 text-blue-700",
+                                                            project.category === "Python" && "bg-green-100 text-green-700"
+                                                        )}>
+                                                            {project.category}
+                                                        </div>
+                                                    </div>
 
-                                    <div className="flex flex-wrap gap-2 mb-6">
-                                        {project.tags.map((tag) => (
-                                            <span key={tag} className="text-xs bg-zinc-100 text-zinc-600 px-2 py-1 rounded">
-                                                {tag}
-                                            </span>
+                                                    <h3 className="font-outfit text-xl font-bold text-gray-900 mb-2">
+                                                        {project.title}
+                                                    </h3>
+                                                    <p className="text-zinc-500 mb-6 flex-grow leading-relaxed">
+                                                        {project.description}
+                                                    </p>
+
+                                                    <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                                                        {project.tags.map((tag) => (
+                                                            <span key={tag} className="text-xs bg-zinc-100 text-zinc-600 px-2 py-1 rounded">
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+
+                                                    <a
+                                                        href={project.link}
+                                                        className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors mt-4 group"
+                                                    >
+                                                        Ver detalhes
+                                                        <ExternalLink size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                                                    </a>
+                                                </Card>
+                                            </motion.div>
                                         ))}
-                                    </div>
+                                    </AnimatePresence>
+                                </div>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <AnimatePresence mode="popLayout">
+                            {filteredProjects.map((project) => (
+                                <motion.div
+                                    key={project.title}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <Card className="h-full min-h-[365px] flex flex-col p-6 hover:shadow-xl transition-all duration-300 border-zinc-200/60 bg-white">
+                                        <div className="flex justify-between items-start mb-4">
+                                            <div className={cn(
+                                                "px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider",
+                                                project.category === "Power BI" && "bg-yellow-100 text-yellow-700",
+                                                project.category === "SQL" && "bg-blue-100 text-blue-700",
+                                                project.category === "Python" && "bg-green-100 text-green-700"
+                                            )}>
+                                                {project.category}
+                                            </div>
+                                        </div>
 
-                                    <a
-                                        href={project.link}
-                                        className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors mt-auto group"
-                                    >
-                                        Ver detalhes
-                                        <ExternalLink size={16} className="group-hover:translate-x-0.5 transition-transform" />
-                                    </a>
-                                </Card>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
+                                        <h3 className="font-outfit text-xl font-bold text-gray-900 mb-2">
+                                            {project.title}
+                                        </h3>
+                                        <p className="text-zinc-500 mb-6 flex-grow leading-relaxed">
+                                            {project.description}
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                                            {project.tags.map((tag) => (
+                                                <span key={tag} className="text-xs bg-zinc-100 text-zinc-600 px-2 py-1 rounded">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <a
+                                            href={project.link}
+                                            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors mt-4 group"
+                                        >
+                                            Ver detalhes
+                                            <ExternalLink size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                                        </a>
+                                    </Card>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
+                )}
 
                 {filteredProjects.length === 0 && (
                     <motion.div
