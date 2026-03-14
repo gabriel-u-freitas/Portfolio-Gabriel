@@ -10,7 +10,7 @@ export interface Project {
 export const projectsData: Project[] = [
     // ---- Projetos Reais do GitHub ----
     {
-        title: "Simulação de Monte Carlo com VaR e ES",
+        title: "Simulação Monte Carlo com VaR e ES",
         description: "Simulação de Monte Carlo aplicada a séries financeiras em Python, com cálculo de Value at Risk (VaR) e Expected Shortfall (ES) para análise de risco de portfólios.",
         category: "Python",
         tags: ["Python", "Finance", "Monte Carlo", "Risk Analysis"],
@@ -31,7 +31,7 @@ export const projectsData: Project[] = [
         link: "https://github.com/gabriel-u-freitas/Curva_de_Juros_Brasileira_e_Evolucao_Taxas_no_Tempo"
     },
     {
-        title: "Gráfico Cohort: Taxa Cancelamento",
+        title: "Gráfico Cohort Taxa Cancelamento",
         description: "Código que plota um gráfico de análise de cohort, ou de 'safra', para analisar a taxa de churn de planos de telefonia pós pago.",
         category: "SQL",
         tags: ["SQL", "Python", "Cohort Analysis", "Churn"],

@@ -199,6 +199,8 @@ export default function ProjectsPage() {
 
                                                     <a
                                                         href={project.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
                                                         className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors mt-4 group"
                                                     >
                                                         Ver detalhes
@@ -253,6 +255,8 @@ export default function ProjectsPage() {
 
                                         <a
                                             href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors mt-4 group"
                                         >
                                             Ver detalhes
