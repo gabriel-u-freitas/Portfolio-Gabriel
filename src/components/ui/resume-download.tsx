@@ -56,7 +56,7 @@ export function ResumeDownload() {
                     >
                         <div className="rounded-2xl shadow-xl bg-white border border-zinc-200 overflow-hidden p-2 space-y-1">
                             <a
-                                href="/CV Gabriel Uzêda de Freitas - v3 - EN.pdf"
+                                href="/CV Gabriel Uzêda de Freitas - v4 - EN.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full flex items-center gap-3 px-3 py-2.5 text-sm rounded-xl transition-colors text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 text-left"
@@ -75,7 +75,7 @@ export function ResumeDownload() {
                                 <span className="flex-1 truncate font-medium">Versão em inglês (PDF)</span>
                             </a>
                             <a
-                                href="/CV_Gabriel_Uzeda_de_Freitas.pdf"
+                                href="/CV Gabriel Uzêda de Freitas - v4.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full flex items-center gap-3 px-3 py-2.5 text-sm rounded-xl transition-colors text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 text-left"

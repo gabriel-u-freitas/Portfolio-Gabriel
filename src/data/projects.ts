@@ -59,19 +59,19 @@ export const projectsData: Project[] = [
         link: "https://github.com/gabriel-u-freitas/Projetos_DataCamp_SQL/tree/main/Project%20-%20Exploring%20Trends%20in%20American%20Baby%20Names"
     },
 
-    // ---- Placeholders Power BI ----
+    // ---- Projetos Power BI ----
     {
-        title: "Análise de Vendas B2B",
-        description: "Dashboard interativo para análise de KPIs comerciais, Churn e LTV.",
+        title: "Dashboard Overview Parrot Technology",
+        description: "Dashboard executivo para monitorar performance comercial, incluindo vendas, rentabilidade, metas, market share, rankings (Pareto) e simulações de custos e margens.",
         category: "Power BI",
-        tags: ["Power BI", "DAX", "ETL", "Figma"],
-        link: "#"
+        tags: ["Power BI", "Power Query", "DAX", "Microsoft Access"],
+        link: "https://github.com/gabriel-u-freitas/Projetos_Dash_PowerBI/tree/main/Projeto%20Parrot%20Technology"
     },
     {
-        title: "Relatório de Mercado Financeiro",
-        description: "Visualização de dados de mercado para suporte a decisões de investimento.",
+        title: "Dashboard Sales Performance",
+        description: "Dashboard de vendas focado na qualidade da receita, avaliando impactos de devoluções e descontos e oportunidades de melhoria de margem.",
         category: "Power BI",
-        tags: ["Power BI", "Finance", "Data Viz"],
-        link: "#"
+        tags: ["Power BI", "Power Query", "DAX", "Excel"],
+        link: "https://github.com/gabriel-u-freitas/Projetos_Dash_PowerBI/tree/main/Projeto%20Dashboard%20Comercial"
     }
 ];

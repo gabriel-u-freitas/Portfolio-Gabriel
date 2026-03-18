@@ -104,6 +104,12 @@ export const resumeData = {
     ],
     certifications: [
         {
+            name: "Indicium Lighthouse Ciclo Preparatório - 60h",
+            issuer: "Indicium",
+            date: "Mar 2026",
+            link: "/Certificados LinkedIn/13 Indicium Lighthouse Ciclo Preparatorio - 60h.pdf"
+        },
+        {
             name: "Exploratory Data Analysis in SQL",
             issuer: "DataCamp",
             date: "Nov 2025",
