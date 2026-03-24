@@ -8,7 +8,7 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: "Gabriel U. de Freitas | Portfolio",
-  description: "Analista de M&A e Marketing Intelligence",
+  description: "Analista de Dados, Negócios e Business Intelligence",
 };
 
 export default function RootLayout({
